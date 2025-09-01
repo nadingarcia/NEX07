@@ -186,83 +186,91 @@
     .card-title { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
     .card-para { color: var(--muted); font-size: 15px; line-height: 1.6; }
 
-    /* NOVA SEÇÃO DE PREÇOS */
-    /* --- CSS ATUALIZADO E NOVO PARA A SEÇÃO DE PREÇOS --- */
-.pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 32px; /* Aumentei o espaçamento */
-  width: 100%;
-}
+    /* --- NOVA E MELHORADA SEÇÃO DE PREÇOS --- */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+      width: 100%;
+      justify-content: center;
+    }
 
-.price-card {
-  position: relative; /* Essencial para o posicionamento do selo */
-  background: var(--card);
-  border: 1px solid var(--glass-border);
-  border-radius: 16px;
-  padding: 30px 20px;
-  text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
+    .price-card {
+      position: relative;
+      background: var(--card);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 30px 20px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
 
-.price-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 25px rgba(0,0,0,0.2);
-}
+    .price-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+    }
 
-.price-card.popular {
-    border-color: var(--accent1);
-    transform: scale(1.05);
-}
+    .price-card.popular {
+        border-color: var(--accent1);
+        transform: scale(1.05);
+        box-shadow: 0 20px 40px rgba(124, 58, 237, 0.2);
+    }
 
-.savings-badge {
-  position: absolute;
-  top: -14px; /* Posiciona o selo para fora do card */
-  left: 50%;
-  transform: translateX(-50%);
-  background: linear-gradient(90deg, var(--accent2), #059669); /* Gradiente verde */
-  color: #fff;
-  padding: 5px 12px;
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 700;
-  box-shadow: 0 4px 15px rgba(6, 182, 212, 0.4);
-}
+    .popular-badge {
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      box-shadow: 0 4px 20px rgba(124, 58, 237, 0.5);
+    }
 
-.price-card.popular .savings-badge {
-  background: linear-gradient(90deg, var(--accent1), var(--accent2));
-  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.5);
-}
+    .price-card h3 {
+      font-size: 1.5rem;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      color: #fff;
+    }
 
-.price-card h3 {
-  font-size: 1.5rem;
-  margin-top: 10px; /* Adiciona espaço para o selo */
-  margin-bottom: 10px;
-  color: #fff;
-}
+    .price-card .price {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 5px;
+    }
+    
+    .price-card .price del {
+        font-size: 1.2rem;
+        color: var(--muted);
+        font-weight: 400;
+        margin-right: 8px;
+    }
 
-.price-card .price {
-  font-size: 2.2rem;
-  font-weight: 800;
-  color: var(--accent2);
-  margin-bottom: 10px;
-}
+    .price-card .credits {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: var(--accent2);
+    }
 
-.price-card .coins {
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin-bottom: 15px;
-  color: #fff;
-}
-
-.price-card .note {
-  font-size: 0.9rem;
-  color: var(--muted);
-  min-height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+    .price-card .note {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-top: auto; /* Empurra a nota para baixo */
+      padding-top: 15px;
+    }
+    
+    .price-card .btn {
+        margin-top: 24px;
+    }
 
     /* Seção Final CTA */
     .final-cta {
@@ -290,11 +298,10 @@
       .features-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 768px) {
-      .pricing-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+      .pricing-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
       .price-card.popular { transform: scale(1); } /* Remove zoom no mobile */
       .final-cta { padding: 30px; }
       .container { padding: 16px; }
-      .price-card.popular {transform: scale(1);}
     }
     @media (max-width: 640px) {
       h1 { font-size: 40px; }
@@ -377,88 +384,69 @@
             <p class="card-para">Prepare suas campanhas com antecedência e agende o envio para a data e hora perfeitas. Pause e retome os envios quando precisar.</p>
         </div>
         <div class="card">
-            <div class="card-icon">💰</div>
-            <h3 class="card-title">Sem Mensalidades</h3>
-            <p class="card-para">Compre uma vez, use para sempre. Sem taxas recorrentes, sem surpresas. Uma solução profissional com um investimento único e justo.</p>
+            <div class="card-icon">💳</div>
+            <h3 class="card-title">Pagamento por Uso</h3>
+            <p class="card-para">Compre créditos via PIX, cartão ou boleto. Sem mensalidades ou taxas escondidas. Compre o que precisa e use quando quiser.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SEÇÃO DE PREÇOS INTEGRADA -->
-    <section class="section" id="pricing">
+  <!-- NOVA SEÇÃO DE PREÇOS -->
+  <section class="section" id="pricing">
     <div class="container">
-      <h2 class="section-title">Preços da API (Coins)</h2>
-      <p class="section-subtitle">Adquira "Coins" para realizar envios através da nossa API. Cada mensagem enviada consome 1 coin, oferecendo flexibilidade para suas necessidades.</p>
+      <h2 class="section-title">Escolha seu Pacote de Créditos</h2>
+      <p class="section-subtitle">Comece com nossa oferta especial de lançamento. Compre uma vez, use quando quiser. Quanto maior o pacote, maior sua economia.</p>
 
       <div class="pricing-grid">
         
-        <div class="price-card">
-          <h3>Mini Grátis</h3>
-          <div class="price">R$0</div>
-          <div class="coins">6 Coins</div>
-          <div class="note">Para você testar a plataforma</div>
-        </div>
-
-        <div class="price-card">
-          <div class="savings-badge">Economize 4%</div>
-          <h3>Pacote Starter</h3>
-          <div class="price">R$6</div>
-          <div class="coins">25 Coins</div>
-          <div class="note">R$0,24 por coin</div>
-        </div>
-        
+        <!-- NOVA OFERTA PRINCIPAL -->
         <div class="price-card popular">
-          <div class="savings-badge">Economize 17%</div>
-          <h3>Pacote Intermediário</h3>
-          <div class="price">R$25</div>
-          <div class="coins">120 Coins</div>
-          <div class="note">R$0,21 por coin</div>
+          <div class="popular-badge">MAIS DE 90% OFF</div>
+          <h3>Oferta Inicial</h3>
+          <div class="price">
+            <del>R$150</del> R$10
+          </div>
+          <div class="credits">1.000 Mensagens</div>
+          <a href="#" class="btn btn-primary">Começar Agora</a>
+          <div class="note">Oferta única e exclusiva para sua primeira compra. O melhor custo-benefício do mercado!</div>
+        </div>
+
+        <!-- OUTROS PLANOS -->
+        <div class="price-card">
+          <h3>Pacote Essencial</h3>
+          <div class="price">R$45</div>
+          <div class="credits">400 Mensagens</div>
+          <a href="#" class="btn btn-ghost">Comprar Créditos</a>
+          <div class="note">Economize 25%. Ideal para campanhas de médio porte. Custo de R$0,11 por mensagem.</div>
+        </div>
+        
+        <div class="price-card">
+          <h3>Pacote Pro</h3>
+          <div class="price">R$90</div>
+          <div class="credits">900 Mensagens</div>
+          <a href="#" class="btn btn-ghost">Comprar Créditos</a>
+          <div class="note">Economize 33%. Para negócios com alto volume de envios. Custo de R$0,10 por mensagem.</div>
         </div>
 
         <div class="price-card">
-          <div class="savings-badge">Economize 20%</div>
-          <h3>Pacote Avançado</h3>
-          <div class="price">R$50</div>
-          <div class="coins">250 Coins</div>
-          <div class="note">R$0,20 por coin</div>
-        </div>
-        
-        <div class="price-card">
-            <div class="savings-badge">Economize 27%</div>
-            <h3>Pacote Profissional</h3>
-            <div class="price">R$100</div>
-            <div class="coins">550 Coins</div>
-            <div class="note">R$0,18 por coin</div>
-        </div>
-        
-        <div class="price-card">
-            <div class="savings-badge">Economize 33%</div>
-            <h3>Pacote Empresarial</h3>
-            <div class="price">R$200</div>
-            <div class="coins">1.200 Coins</div>
-            <div class="note">R$0,16 por coin</div>
-        </div>
-        
-        <div class="price-card">
-            <div class="savings-badge">Economize 36%</div>
-            <h3>Pacote VIP</h3>
-            <div class="price">R$400</div>
-            <div class="coins">2.500 Coins</div>
-            <div class="note">R$0,16 por coin</div>
-        </div>
+            <h3>Teste Grátis</h3>
+            <div class="price">R$0</div>
+            <div class="credits">10 Mensagens</div>
+            <a href="#" class="btn btn-ghost">Testar de Graça</a>
+            <div class="note">Experimente as funcionalidades básicas sem nenhum custo.</div>
+          </div>
 
       </div>
     </div>
-    </section>
-
+  </section>
   <!-- FIM DA SEÇÃO DE PREÇOS -->
 
-  <div class="container">
+  <div class="container" style="text-align: center;">
     <div class="final-cta">
         <h2 class="section-title">Pronto para Revolucionar sua Comunicação?</h2>
         <p class="section-subtitle" style="color: rgba(255,255,255,0.9);">Pare de perder tempo com tarefas manuais. Comece a vender mais e a engajar seus clientes de forma inteligente hoje mesmo.</p>
-        <a id="downloadBtnFinal" class="btn btn-primary" href="#" rel="noopener" style="background: #fff; color: var(--accent1); box-shadow: 0 8px 30px rgba(0,0,0,0.2); width: 100%;">Baixar NEX07 para Windows</a>
+        <a id="downloadBtnFinal" class="btn btn-primary" href="#" rel="noopener" style="background: #fff; color: var(--accent1); box-shadow: 0 8px 30px rgba(0,0,0,0.2);">Baixar NEX07 para Windows</a>
     </div>
   </div>
 
@@ -473,8 +461,15 @@
     const DOWNLOAD_URL = 'https://drive.google.com/file/d/1ZzQDXKs-YvKVlq9CawYLJLDq4CjSHn2N/view?usp=sharing';
     const REPO_URL_DISPLAY = 'https://github.com/nadingarcia/NEX07';
 
+    // Adiciona o link de download aos botões
     document.getElementById('downloadBtn').href = DOWNLOAD_URL;
     document.getElementById('downloadBtnFinal').href = DOWNLOAD_URL;
+    
+    // Adiciona o atributo target="_blank" para abrir em nova aba
+    document.getElementById('downloadBtn').target = '_blank';
+    document.getElementById('downloadBtnFinal').target = '_blank';
+
+    // Atualiza o texto do repositório
     document.getElementById('repoLink').textContent = REPO_URL_DISPLAY;
   </script>
 
