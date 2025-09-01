@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NEX07 Assistant — Transforme seu WhatsApp em uma Máquina de Vendas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <meta name="description" content="A ferramenta de automação de WhatsApp mais poderosa para disparos em massa. Personalize, agende e envie para milhares de clientes. Baixe a versão para Windows." />
+  <style>
+    :root {
+      --bg1: #0a101f;
+      --bg2: #0b1220;
+      --accent1: #7c3aed;
+      --accent2: #06b6d4;
+      --card: rgba(17, 24, 39, 0.5);
+      --muted: rgba(255, 255, 255, 0.75);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --radius: 20px;
+      --shadow: 0 10px 30px rgba(2, 6, 23, 0.7);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background-color: var(--bg1);
+      background-image: linear-gradient(180deg, var(--bg1), var(--bg2));
+      color: #fff;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Fundo com brilho animado */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: radial-gradient(circle at 15% 25%, rgba(124, 58, 237, 0.2), transparent 40%),
+                  radial-gradient(circle at 85% 65%, rgba(6, 182, 212, 0.15), transparent 40%);
+      animation: animate-glow 20s ease-in-out infinite;
+      z-index: -1;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px;
+    }
+
+    /* HERO */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      min-height: 90vh;
+      padding: 56px 0;
+    }
+
+    .badge {
+      display: inline-flex;
+      background: linear-gradient(90deg, var(--accent2), var(--accent1));
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 14px;
+      animation: fade-in-down 0.6s ease-out;
+    }
+
+    h1 {
+      font-size: clamp(38px, 6vw, 68px);
+      line-height: 1.1;
+      margin: 16px 0;
+      font-weight: 800;
+      letter-spacing: -2px;
+      background: linear-gradient(90deg, #fff, #cdd7e5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: fade-in-up 0.7s 0.1s ease-out backwards;
+    }
+
+    p.lead {
+      font-size: 18px;
+      color: var(--muted);
+      margin-bottom: 32px;
+      line-height: 1.6;
+      max-width: 500px;
+      animation: fade-in-up 0.8s 0.2s ease-out backwards;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      animation: fade-in-up 0.9s 0.3s ease-out backwards;
+    }
+
+    .btn {
+      padding: 16px 28px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 16px;
+      border: 0;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
+      color: #fff;
+      animation: pulse-glow 2.5s infinite ease-in-out;
+    }
+    .btn-primary:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(124, 58, 237, 0.6);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid var(--glass-border);
+      color: var(--muted);
+    }
+    .btn-ghost:hover {
+      background: var(--glass-border);
+      color: #fff;
+    }
+    
+    .app-mockup {
+        background: linear-gradient(145deg, #1e293b, #0f172a);
+        border: 1px solid var(--glass-border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        color: var(--muted);
+        font-size: 24px;
+        animation: fade-in-zoom 0.8s 0.3s ease-out backwards;
+    }
+
+    /* SEÇÕES */
+    .section {
+      padding: 60px 0;
+      text-align: center;
+    }
+    .section-title {
+        font-size: 42px;
+        font-weight: 800;
+        margin-bottom: 16px;
+    }
+    .section-subtitle {
+        font-size: 18px;
+        color: var(--muted);
+        max-width: 600px;
+        margin: 0 auto 48px;
+        line-height: 1.6;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      text-align: left;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 24px;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      background: rgba(17, 24, 39, 0.9);
+    }
+    .card-icon { font-size: 32px; margin-bottom: 16px; }
+    .card-title { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+    .card-para { color: var(--muted); font-size: 15px; line-height: 1.6; }
+
+    /* Seção Final CTA */
+    .final-cta {
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      border-radius: var(--radius);
+      padding: 50px;
+      margin: 60px 0;
+    }
+
+    footer {
+      margin-top: 50px;
+      color: var(--muted);
+      font-size: 14px;
+      text-align: center;
+      padding: 30px 0;
+      border-top: 1px solid var(--glass-border);
+    }
+    /* Responsividade */
+    @media (max-width: 980px) {
+      .hero { grid-template-columns: 1fr; text-align: center; }
+      p.lead { margin: 0 auto 32px; }
+      .cta-row { justify-content: center; }
+      .app-mockup { margin-top: 40px; height: 380px; }
+      .features-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      h1 { font-size: 40px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .cta-row { flex-direction: column; align-items: stretch;}
+    }
+
+    /* Animações */
+    @keyframes animate-glow {
+      0% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.5); opacity: 1; }
+      100% { transform: scale(1); opacity: 0.8; }
+    }
+    @keyframes fade-in-up {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fade-in-down {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fade-in-zoom {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes pulse-glow {
+        0%, 100% { box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4); }
+        50% { box-shadow: 0 8px 30px rgba(6, 182, 212, 0.5); }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="container">
+    <div class="hero">
+      <div class="hero-content">
+        <div class="badge">A Solução Definitiva para Campanhas</div>
+        <h1>Transforme seu WhatsApp em uma Máquina de Vendas</h1>
+        <p class="lead">Envie mensagens personalizadas para milhares de clientes com apenas alguns cliques. O NEX07 Assistant é a ferramenta local e segura que seu negócio precisa para crescer.</p>
+        <div class="cta-row">
+          <a id="downloadBtn" class="btn btn-primary" href="#" rel="noopener">BAIXAR AGORA (Windows)</a>
+          <a href="#features" class="btn btn-ghost">Ver Funcionalidades</a>
+        </div>
+      </div>
+      <div class="app-mockup" style="overflow: hidden;">
+          <!-- Você pode substituir este div por uma imagem do seu app -->
+          <img src="image.png" alt="Interface do NEX07 Assistant" style="max-width: 100%; max-height: 100%; border-radius: var(--radius); object-fit: cover;" />
+      </div>
+    </div>
+  </main>
+
+  <section class="section" id="features">
+    <div class="container">
+      <h2 class="section-title">Uma Ferramenta Poderosíssima</h2>
+      <p class="section-subtitle">Tudo o que você precisa para automatizar sua comunicação, economizar tempo e impulsionar suas vendas, com total segurança.</p>
+      
+      <div class="features-grid">
+        <div class="card">
+          <div class="card-icon">🚀</div>
+          <h3 class="card-title">Disparos em Massa Inteligentes</h3>
+          <p class="card-para">Importe seus contatos de planilhas (CSV) ou do seu próprio WhatsApp. Envie campanhas para milhares de pessoas de uma só vez, sem bloqueios.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🎨</div>
+          <h3 class="card-title">Personalização Automática</h3>
+          <p class="card-para">Chame cada cliente pelo nome. Use variáveis como [nome], [protocolo] ou [vencimento] para criar mensagens únicas e pessoais em grande escala.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔒</div>
+          <h3 class="card-title">100% Seguro e Privado</h3>
+          <p class="card-para">O NEX07 roda no seu computador. Suas conversas, contatos e chaves de acesso nunca saem da sua máquina. Controle total e privacidade absoluta.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">📎</div>
+            <h3 class="card-title">Envio de Múltiplos Formatos</h3>
+            <p class="card-para">Vá além do texto. Envie imagens, vídeos, documentos (PDF) e até áudios gravados para tornar suas campanhas muito mais impactantes.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">📈</div>
+            <h3 class="card-title">Agendamento e Controle</h3>
+            <p class="card-para">Prepare suas campanhas com antecedência e agende o envio para a data e hora perfeitas. Pause e retome os envios quando precisar.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">💰</div>
+            <h3 class="card-title">Sem Mensalidades</h3>
+            <p class="card-para">Compre uma vez, use para sempre. Sem taxas recorrentes, sem surpresas. Uma solução profissional com um investimento único e justo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="final-cta">
+        <h2 class="section-title">Pronto para Revolucionar sua Comunicação?</h2>
+        <p class="section-subtitle" style="color: rgba(255,255,255,0.9);">Pare de perder tempo com tarefas manuais. Comece a vender mais e a engajar seus clientes de forma inteligente hoje mesmo.</p>
+        <a id="downloadBtnFinal" class="btn btn-primary" href="#" rel="noopener" style="background: #fff; color: var(--accent1); box-shadow: 0 8px 30px rgba(0,0,0,0.2); width: 100%;">Baixar NEX07 Assistant para Windows</a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      © NEX07 Assistant • Desenvolvido para negócios de alta performance.
+      <div style="margin-top: 8px; font-size: 12px;">Hospedado em: <strong id="repoLink">GitHub Releases</strong> • Use com responsabilidade.</div>
+    </div>
+  </footer>
+
+  <script>
+    // IMPORTANTE: Atualize estas URLs com as do seu repositório!
+    const DOWNLOAD_URL = 'https://drive.google.com/file/d/1ZzQDXKs-YvKVlq9CawYLJLDq4CjSHn2N/view?usp=sharing';
+    const REPO_URL_DISPLAY = 'https://github.com/nadingarcia/NEX07-ASSISTENTE';
+
+    document.getElementById('downloadBtn').href = DOWNLOAD_URL;
+    document.getElementById('downloadBtnFinal').href = DOWNLOAD_URL;
+    document.getElementById('repoLink').textContent = REPO_URL_DISPLAY;
+  </script>
+
+</body>
+</html>
